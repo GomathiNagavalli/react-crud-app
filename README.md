@@ -3,7 +3,7 @@
 A production-ready User Management application built with React, Bootstrap, and JSON-Server.
 This project features a fully configuration-driven form architecture, allowing developers to add new fields by simply modifying a config file.
 
-## 🚀 Features
+##  Features
 
 - **CRUD Operations**: Create, Read, Update, Delete users.
 - **Config-Driven UI**: Forms are generated dynamically from `client/src/config/formConfig.js`.
@@ -11,7 +11,7 @@ This project features a fully configuration-driven form architecture, allowing d
 - **Responsive Design**: Mobile-friendly UI using Bootstrap 5.
 - **Mock Backend**: RESTful API simulation using JSON-Server.
 
-## 📂 Folder Structure
+##  Folder Structure
 
 ```
 react-crud-app/
@@ -27,7 +27,7 @@ react-crud-app/
     └── package.json
 ```
 
-## 🛠️ Setup & Installation
+##  Setup & Installation
 
 ### Prerequisites
 - Node.js (v14 or higher)
@@ -80,7 +80,7 @@ To add a new field (e.g., "Date of Birth"):
 ```
 **No other code changes are required!** The form and table will automatically include the new field.
 
-## 📦 Deployment Instructions
+##  Deployment Instructions
 
 ### Deploying Frontend (Vercel/Netlify)
 Note: Since `json-server` is a local mock database, it won't work on a static host like Vercel unless you deploy the backend separately (e.g., creating a real API or using a service like MockAPI.io).
@@ -97,4 +97,4 @@ Note: Since `json-server` is a local mock database, it won't work on a static ho
 4. Deploy.
 
 ---
-**Built with ❤️ using React & Bootstrap**
+**Built with  using React & Bootstrap**
