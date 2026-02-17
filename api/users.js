@@ -52,7 +52,13 @@ export default function handler(req, res) {
     // OR rely on path segment if we had [id].js.
     // Let's stick to standard REST body/query for now to avoid complex routing file structure.
 
-    const { id } = req.query;
+    let { id } = req.query;
+    // If id is not in query, check if it came from path rewrite (req.query.match)
+    // vercel.json rewrite: /api/users/:match* -> match becomes an array of path segments
+    if (!id && req.query.match) {
+        // If match is array, take first element. If string, take it directly.
+        id = Array.isArray(req.query.match) ? req.query.match[0] : req.query.match;
+    }
 
     switch (method) {
         case 'GET':
