@@ -1,0 +1,27 @@
+{
+    "version": 2,
+    "rewrites": [
+        {
+            "source": "/api/users/:match*",
+            "destination": "/api/users.js"
+        },
+        {
+            "source": "/api/users",
+            "destination": "/api/users.js"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/client/$1"
+        }
+    ],
+    "builds": [
+        {
+            "src": "client/package.json",
+            "use": "@vercel/static-build"
+        },
+        {
+            "src": "api/users.js",
+            "use": "@vercel/node"
+        }
+    ]
+}

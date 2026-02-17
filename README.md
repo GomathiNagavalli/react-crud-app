@@ -1,100 +1,59 @@
-# React Configuration-Driven CRUD App
+# React Vercel CRUD App
 
-A production-ready User Management application built with React, Bootstrap, and JSON-Server.
-This project features a fully configuration-driven form architecture, allowing developers to add new fields by simply modifying a config file.
+A production-ready User Management application configured for Vercel deployment.
+This project uses React for the frontend and Vercel Serverless Functions for the API.
 
-##  Features
+## 🚀 Features
 
-- **CRUD Operations**: Create, Read, Update, Delete users.
-- **Config-Driven UI**: Forms are generated dynamically from `client/src/config/formConfig.js`.
-- **Validation**: Built-in email and required field validation.
-- **Responsive Design**: Mobile-friendly UI using Bootstrap 5.
-- **Mock Backend**: RESTful API simulation using JSON-Server.
+- **Real API**: Uses Node.js built on Vercel Functions.
+- **Config-Driven UI**: Forms are generated dynamically.
+- **Vercel Ready**: Configured for immediate deployment.
 
-##  Folder Structure
+## ⚠️ Data Persistence Warning
+
+The "Database" is currently **in-memory** for demonstration purposes.
+Because Vercel functions are serverless and ephemeral, **all data will be lost** when the function restarts or redeploys.
+To make this persistent, edit `api/users.js` to connect to a real database like **MongoDB Atlas**, **Supabase**, or **Vercel Postgres**.
+
+## 📂 Folder Structure
 
 ```
 react-crud-app/
-├── client/                 # React Frontend
-│   ├── src/
-│   │   ├── config/         # Form Configuration (EXTENSIBILITY)
-│   │   ├── components/     # Reusable Components
-│   │   ├── services/       # API Logic (Axios)
-│   │   └── App.js          # Main Component
-│   └── package.json
-└── server/                 # Mock Backend
-    ├── db.json             # Database
-    └── package.json
+├── api/                # Serverless Backend
+│   └── users.js        # API Logic
+├── client/             # React Frontend
+├── vercel.json         # Deployment Config
+└── ...
 ```
 
-##  Setup & Installation
+## 🛠️ Deployment Steps (Vercel)
 
-### Prerequisites
-- Node.js (v14 or higher)
-- npm
+1. **Push to GitHub/GitLab/Bitbucket**.
+   - Create a repo and push this entire folder.
 
-### 1. Install Dependencies
+2. **Import to Vercel**.
+   - Go to Vercel Dashboard -> Add New Project.
+   - Select your repository.
+   - **Framework Preset**: Vercel should detect it automatically or leave default.
+   - **Root Directory**: Leave as the project root (where vercel.json is).
 
-**Server:**
+3. **Deploy**.
+   - Click deploy. Vercel will build the React app and set up the API functions.
+
+4. **Test**.
+   - Your app will be live at `https://your-project.vercel.app`.
+
+## 💻 Local Development
+
+To run this locally with the serverless functions, you need the **Vercel CLI**.
+
 ```bash
-cd server
-npm install
+npm install -g vercel
+vercel dev
 ```
 
-**Client:**
+Alternatively, you can run the React app alone (but API calls will fail unless you proxy manual server):
 ```bash
-cd ../client
-npm install
-```
-
-### 2. Run the Application
-
-**Step 1: Start the Backend (Port 5000)**
-Open a terminal in the `server` folder:
-```bash
+cd client
 npm start
 ```
-*The API will run at http://localhost:5000/users*
-
-**Step 2: Start the Frontend (Port 3000)**
-Open a new terminal in the `client` folder:
-```bash
-npm start
-```
-*The app will open at http://localhost:3000*
-
-## 🔧 Extensibility (How to add fields)
-
-To add a new field (e.g., "Date of Birth"):
-1. Open `client/src/config/formConfig.js`
-2. Add a new object to the array:
-
-```javascript
-{
-  name: "dob",
-  label: "Date of Birth",
-  type: "date",
-  required: true,
-  className: "col-md-6"
-}
-```
-**No other code changes are required!** The form and table will automatically include the new field.
-
-##  Deployment Instructions
-
-### Deploying Frontend (Vercel/Netlify)
-Note: Since `json-server` is a local mock database, it won't work on a static host like Vercel unless you deploy the backend separately (e.g., creating a real API or using a service like MockAPI.io).
-
-**For Production Real API**:
-1. Update `client/src/services/api.js` with your production API URL.
-2. Run `npm run build` in the client folder.
-3. Deploy the `build` folder.
-
-**Vercel Steps:**
-1. Push code to GitHub.
-2. Import project in Vercel.
-3. Set Root Directory to `client`.
-4. Deploy.
-
----
-**Built with  using React & Bootstrap**

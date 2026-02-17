@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-// Base URL for the JSON-server
-const API_URL = 'http://localhost:5000/users';
+// Base URL for the API
+// In production (Vercel), this will be relative.
+// We use a relative path so it works on the same domain.
+const API_URL = '/api/users';
 
 const api = axios.create({
     baseURL: API_URL,
@@ -15,7 +17,7 @@ const userService = {
     // Get all users
     getAll: async () => {
         try {
-            const response = await api.get('/');
+            const response = await api.get('');
             return response.data;
         } catch (error) {
             throw error;
@@ -25,7 +27,8 @@ const userService = {
     // Get single user by ID
     getById: async (id) => {
         try {
-            const response = await api.get(`/${id}`);
+            // Changed to query param for compatibility with single-function API
+            const response = await api.get(`?id=${id}`);
             return response.data;
         } catch (error) {
             throw error;
@@ -35,7 +38,7 @@ const userService = {
     // Create new user
     create: async (userData) => {
         try {
-            const response = await api.post('/', userData);
+            const response = await api.post('', userData);
             return response.data;
         } catch (error) {
             throw error;
@@ -45,7 +48,8 @@ const userService = {
     // Update existing user
     update: async (id, userData) => {
         try {
-            const response = await api.put(`/${id}`, userData);
+            // Changed to query param
+            const response = await api.put(`?id=${id}`, userData);
             return response.data;
         } catch (error) {
             throw error;
@@ -55,7 +59,8 @@ const userService = {
     // Delete user
     delete: async (id) => {
         try {
-            const response = await api.delete(`/${id}`);
+            // Changed to query param
+            const response = await api.delete(`?id=${id}`);
             return response.data;
         } catch (error) {
             throw error;
